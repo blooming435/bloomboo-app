@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f2f8">
+<title>BloomBoo — Your dreams. Our little steps.</title>
+<style>
+:root{--ink:#302541;--muted:#776b83;--cream:#fffaf4;--lav:#eee3f5;--purple:#8466a8;--sage:#dce8d5;--line:#e8ddeb;--pink:#f7e4ec}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(150deg,#fbf7f2,#f4edf8);color:var(--ink);font-family:ui-rounded,"Avenir Next",system-ui,-apple-system,sans-serif}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding:18px 16px 94px}
+header{display:flex;justify-content:space-between;align-items:center;padding:8px 2px 20px}.brand{display:flex;gap:10px;align-items:center}.logo{width:46px;height:46px;border-radius:16px;background:linear-gradient(145deg,#dce8d5,#e9d9f2);display:grid;place-items:center;font-size:25px;box-shadow:0 5px 14px #6c4b8118}.brand h1{font-size:20px;margin:0;letter-spacing:-.5px}.brand p{font-size:11px;color:var(--muted);margin:3px 0 0}.avatar{border:1px solid var(--line);background:#fff9;border-radius:50%;width:42px;height:42px}
+h2{font-size:26px;line-height:1.15;margin:0 0 8px;letter-spacing:-.8px}h3{font-size:16px;margin:0 0 8px}.sub{color:var(--muted);font-size:14px;line-height:1.5;margin:0}
+.hero{background:linear-gradient(120deg,#e9dff2,#f7e9ed 60%,#e5eddd);border:1px solid #fff;border-radius:27px;padding:24px;position:relative;overflow:hidden;box-shadow:0 12px 35px #58436a0c}.hero:after{content:"🌷";position:absolute;right:18px;bottom:10px;font-size:70px;opacity:.7;transform:rotate(-12deg)}.hero .eyebrow{font-size:11px;letter-spacing:1.7px;text-transform:uppercase;color:#725b8d;font-weight:800;margin-bottom:12px}.hero h2{max-width:390px}.hero p{max-width:340px}.hero button{margin-top:17px}
+.btn{border:0;background:var(--purple);color:white;border-radius:14px;padding:12px 16px;font-weight:700;font-size:13px;box-shadow:0 5px 12px #8466a822}.btn.secondary{background:#fff9;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn.small{padding:9px 12px;font-size:12px}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 12px}.sectionhead h3{margin:0}.textbutton{background:none;border:0;color:var(--purple);font-size:12px;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile,.card{background:#fffaf2e8;border:1px solid #fff;border-radius:21px;padding:16px;box-shadow:0 8px 24px #58436a08}.tile .emoji{font-size:25px;margin-bottom:10px}.tile h3{font-size:14px}.tile p{font-size:12px;color:var(--muted);line-height:1.45;margin:0}.tile button{margin-top:12px}
+.quote{background:#fffaf4;border:1px solid #fff;border-radius:24px;padding:23px;text-align:center}.quote .mark{font-size:27px;color:#a38cbb}.quote blockquote{font-family:Georgia,serif;font-size:22px;line-height:1.4;margin:10px 0 14px}.quote .by{font-size:12px;color:var(--muted)}
+.progress{height:8px;border-radius:99px;background:#eee7f0;overflow:hidden;margin:12px 0}.progress span{height:100%;display:block;background:linear-gradient(90deg,#9c7bbc,#9fbe8f);width:0;transition:width .2s}
+.task{display:flex;gap:11px;align-items:center;padding:12px 0;border-bottom:1px solid #eee7ef}.task:last-child{border:0}.task input{accent-color:#8b70a8;width:18px;height:18px}.task label{font-size:13px;flex:1}.task.done label{text-decoration:line-through;color:#998fa0}
+.field{width:100%;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:#fffdfb;color:var(--ink);outline:none}.field:focus{border-color:#a48abe}textarea.field{resize:vertical;min-height:115px}.stack{display:grid;gap:10px}.pill{display:inline-block;background:var(--sage);border-radius:99px;padding:6px 10px;font-size:11px;color:#4c6849;font-weight:700}
+.nav{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#fffaf4ed;backdrop-filter:blur(15px);border-top:1px solid var(--line);display:flex;justify-content:center;gap:0;padding:8px max(5px,calc((100vw - 720px)/2)) max(9px,env(safe-area-inset-bottom))}.nav button{border:0;background:none;color:#82758d;flex:1;max-width:120px;font-size:10px;font-weight:700;padding:5px 2px;border-radius:12px}.nav button span{display:block;font-size:20px;margin-bottom:3px}.nav button.active{color:#74528e;background:#f0e7f5}
+.page{display:none}.page.active{display:block}.notice{font-size:11px;color:var(--muted);line-height:1.5;margin:14px 3px}.garden{background:linear-gradient(#e7efdF,#f8f0f0);border-radius:23px;padding:22px;text-align:center}.plant{font-size:78px;line-height:1.3}.garden .progress{max-width:300px;margin:14px auto}
+.listitem{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.listitem:last-child{border:0}.listitem strong{font-size:13px}.listitem small{display:block;color:var(--muted);margin-top:4px}
+.toast{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:#352743;color:white;padding:10px 15px;border-radius:99px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}.toast.show{opacity:1}
+@media(min-width:620px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:32px}.hero h2{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand"><div class="logo">🎋🌷</div><div><h1>BloomBoo</h1><p>Your dreams. Our little steps.</p></div></div><button class="avatar" onclick="showPage('journal')" aria-label="Open journal">♡</button></header>
+
+<section id="home" class="page active">
+  <div class="hero"><div class="eyebrow">A gentle place to begin</div><h2>You don't have to bloom all at once.</h2><p class="sub">Big dreams. Small steps. Real change. Start where you are, with what you have.</p><button class="btn" onclick="showPage('steps')">Take one small step →</button></div>
+  <div class="sectionhead"><h3>Your little corner</h3><span class="pill">Grow at your pace</span></div>
+  <div class="grid">
+    <div class="tile"><div class="emoji">🌱</div><h3>Small Steps</h3><p>Turn a big dream into one doable task.</p><button class="btn secondary small" onclick="showPage('steps')">Open</button></div>
+    <div class="tile"><div class="emoji">🪴</div><h3>Growth Garden</h3><p>Watch your effort grow, one step at a time.</p><button class="btn secondary small" onclick="showPage('garden')">Visit</button></div>
+    <div class="tile"><div class="emoji">💜</div><h3>Daily Quotes</h3><p>A gentle reminder not to give up on yourself.</p><button class="btn secondary small" onclick="showPage('quotes')">Read</button></div>
+    <div class="tile"><div class="emoji">📖</div><h3>Learning Corner</h3><p>Make room for a skill, one lesson at a time.</p><button class="btn secondary small" onclick="showPage('learn')">Explore</button></div>
+    <div class="tile"><div class="emoji">✍️</div><h3>My Journal</h3><p>Write honestly. No pressure to be perfect.</p><button class="btn secondary small" onclick="showPage('journal')">Write</button></div>
+    <div class="tile"><div class="emoji">☁️</div><h3>Gentle Reset</h3><p>Missed a day? You can begin again.</p><button class="btn secondary small" onclick="resetDay()">Reset today</button></div>
+  </div>
+  <div class="sectionhead"><h3>A thought for today</h3><button class="textbutton" onclick="showPage('quotes')">More quotes →</button></div>
+  <div class="quote"><div class="mark">“</div><blockquote id="homeQuote">You are allowed to grow slowly. Just don't abandon yourself.</blockquote><div class="by">A little reminder from BloomBoo</div></div>
+</section>
+
+<section id="steps" class="page">
+  <h2>Small Steps 🌱</h2><p class="sub">You don't have to do everything today. Choose one thing that moves you gently forward.</p>
+  <div class="card" style="margin-top:16px"><h3>What are you growing toward?</h3><div class="stack"><input id="goal" class="field" placeholder="e.g. Learn Mandarin, create my first video…"><button class="btn" onclick="saveGoal()">Save my goal</button></div><p class="notice" id="goalStatus">Your goal is saved on this device in this prototype.</p></div>
+  <div class="sectionhead"><h3>Today's little tasks</h3><button class="textbutton" onclick="addTask()">+ Add task</button></div>
+  <div class="card"><div id="taskList"></div><div class="progress"><span id="taskProgress"></span></div><p class="sub" id="taskCount">Every little effort counts.</p></div>
+  <p class="notice">Tip: choose tasks so small you can start them even on a low-energy day.</p>
+</section>
+
+<section id="garden" class="page">
+  <h2>Your Growth Garden 🪴</h2><p class="sub">Your progress doesn't need to be perfect to be real.</p>
+  <div class="garden" style="margin-top:18px"><div class="plant" id="plant">🌱</div><h3 id="plantTitle">A new beginning</h3><p class="sub" id="plantText">Every completed task gives your garden a little sunshine.</p><div class="progress"><span id="gardenProgress"></span></div><span class="pill" id="gardenLevel">Level 1 · Seedling</span></div>
+  <div class="card" style="margin-top:14px"><h3>Remember</h3><p class="sub">Missing a day doesn't erase your growth. Come back when you're ready. This garden is a reminder of effort, not a measure of your worth.</p></div>
+</section>
+
+<section id="quotes" class="page">
+  <h2>Words to hold onto 💜</h2><p class="sub">For the days when you need a reminder to keep believing in yourself.</p>
+  <div class="quote" style="margin-top:18px"><div class="mark">“</div><blockquote id="quoteText">You are allowed to grow slowly. Just don't abandon yourself.</blockquote><div class="by" id="quoteBy">BloomBoo reminder</div><div style="display:flex;justify-content:center;gap:8px;margin-top:18px"><button class="btn secondary small" onclick="prevQuote()">← Previous</button><button class="btn small" onclick="nextQuote()">Another quote →</button></div></div>
+  <div class="sectionhead"><h3>Save your favorite</h3></div><div class="card"><p class="sub" id="savedQuoteText">Save a quote that speaks to you, and it will stay in your favorites on this device.</p><button class="btn secondary small" style="margin-top:12px" onclick="saveQuote()">♡ Save quote</button><div id="favorites" style="margin-top:12px"></div></div>
+</section>
+
+<section id="learn" class="page">
+  <h2>Learning Corner 📖</h2><p class="sub">You don't need to master everything. Pick one thing to explore first.</p>
+  <div class="stack" style="margin-top:16px">
+    <div class="card"><span class="pill">Languages</span><h3 style="margin-top:10px">Learn a few words</h3><p class="sub">Choose five useful words, say them aloud, and use one in a sentence.</p><button class="btn secondary small" onclick="addSuggested('Practice five new vocabulary words')">Add to my tasks</button></div>
+    <div class="card"><span class="pill">Creativity</span><h3 style="margin-top:10px">Make one tiny thing</h3><p class="sub">Write a short script, sketch a logo, or draft a post. It doesn't have to be published.</p><button class="btn secondary small" onclick="addSuggested('Spend 10 minutes on a creative idea')">Add to my tasks</button></div>
+    <div class="card"><span class="pill">Skills & work</span><h3 style="margin-top:10px">Build a useful skill</h3><p class="sub">Spend 15 minutes learning one beginner concept, then write down what you understood.</p><button class="btn secondary small" onclick="addSuggested('Learn one beginner skill for 15 minutes')">Add to my tasks</button></div>
+  </div>
+  <p class="notice">These are starter prompts, not a full course. We can add structured lessons after deciding which topics users need most.</p>
+</section>
+
+<section id="journal" class="page">
+  <h2>A little space for you ✍️</h2><p class="sub">You can be honest here. This is your practice journal on this device.</p>
+  <div class="card" style="margin-top:16px"><div class="stack"><label for="mood" style="font-size:13px;font-weight:700">How are you feeling today?</label><select id="mood" class="field"><option>Hopeful 🌱</option><option>Calm ☁️</option><option>Tired 🌙</option><option>Overwhelmed 🌧️</option><option>Proud of myself 🌷</option><option>Not sure yet 💭</option></select><label for="gratitude" style="font-size:13px;font-weight:700">One thing I appreciate today</label><textarea id="gratitude" class="field" placeholder="It can be something tiny…"></textarea><label for="thoughts" style="font-size:13px;font-weight:700">What is on my mind?</label><textarea id="thoughts" class="field" placeholder="Write without judging yourself…"></textarea><button class="btn" onclick="saveJournal()">Save today's reflection</button><p class="notice" id="journalStatus">Your entries stay in this browser's local storage in this prototype. They are not backed up online.</p></div></div>
+</section>
+
+<p class="notice">BloomBoo is an early prototype, not a published App Store app. Your tasks, goal, favorites and journal are stored only in this browser on this device. Don't enter highly sensitive information.</p>
+</div>
+<nav class="nav">
+<button class="active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
+<button data-page="steps" onclick="showPage('steps')"><span>🌱</span>Steps</button>
+<button data-page="garden" onclick="showPage('garden')"><span>🪴</span>Garden</button>
+<button data-page="quotes" onclick="showPage('quotes')"><span>♡</span>Quotes</button>
+<button data-page="journal" onclick="showPage('journal')"><span>✎</span>Journal</button>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+const quotes=[
+["You are allowed to grow slowly. Just don't abandon yourself.","BloomBoo reminder"],
+["You do not have to see the whole staircase. Take the next small step.","BloomBoo reminder"],
+["A difficult day is not proof that you are failing.","BloomBoo reminder"],
+["Begin again as many times as you need. Your story is still being written.","BloomBoo reminder"],
+["You can be a work in progress and still be worthy of kindness.","BloomBoo reminder"],
+["Small progress is still progress, even when nobody else sees it.","BloomBoo reminder"],
+["Rest when you need to. Your dreams will still be there when you return.","BloomBoo reminder"],
+["Don't measure your beginning against someone else's middle.","BloomBoo reminder"],
+["You deserve patience from yourself, too.","BloomBoo reminder"],
+["One honest attempt is better than waiting to feel perfectly ready.","BloomBoo reminder"],
+["You are not behind in becoming yourself.","BloomBoo reminder"],
+["You can change your plan without giving up on your future.","BloomBoo reminder"]
+];
+let quoteIndex=0;
+let tasks=JSON.parse(localStorage.getItem('bb_tasks')||'null')||[{text:'Spend 10 minutes on one goal',done:false},{text:'Learn or practice one small thing',done:false},{text:'Take a pause and be kind to myself',done:false}];
+function persistTasks(){localStorage.setItem('bb_tasks',JSON.stringify(tasks));renderTasks();renderGarden()}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='quotes')renderQuote();if(id==='journal')loadJournal();window.scrollTo({top:0,behavior:'smooth'})}
+function renderTasks(){const el=document.getElementById('taskList');if(!el)return;el.innerHTML='';tasks.forEach((t,i)=>{const row=document.createElement('div');row.className='task'+(t.done?' done':'');const cb=document.createElement('input');cb.type='checkbox';cb.checked=t.done;cb.id='task'+i;cb.onchange=()=>{tasks[i].done=cb.checked;persistTasks()};const label=document.createElement('label');label.htmlFor=cb.id;label.textContent=t.text;const del=document.createElement('button');del.className='textbutton';del.textContent='×';del.setAttribute('aria-label','Delete task');del.onclick=()=>{tasks.splice(i,1);persistTasks()};row.append(cb,label,del);el.append(row)});const done=tasks.filter(t=>t.done).length;document.getElementById('taskProgress').style.width=(tasks.length?done/tasks.length*100:0)+'%';document.getElementById('taskCount').textContent=done+' of '+tasks.length+' little steps completed. Every effort counts.'}
+function addTask(){const text=prompt('What small task would help you today?');if(text&&text.trim()){tasks.push({text:text.trim(),done:false});persistTasks();toast('A small step added 🌱')}}
+function addSuggested(t){tasks.push({text:t,done:false});persistTasks();showPage('steps');toast('Added to your tasks 🌱')}
+function saveGoal(){const g=document.getElementById('goal').value.trim();if(!g)return toast('Write a goal first 🌷');localStorage.setItem('bb_goal',g);document.getElementById('goalStatus').textContent='Your current goal: '+g;toast('Goal saved 🌱')}
+function renderGarden(){const done=tasks.filter(t=>t.done).length;const level=Math.floor(done/5)+1;document.getElementById('plant').textContent=done>=15?'🌳':done>=8?'🌻':done>=3?'🌿':done>=1?'🌱':'🪴';document.getElementById('plantTitle').textContent=done>=15?'Look how far you have grown':done>=8?'Growing beautifully':done>=3?'Little leaves, real progress':done>=1?'Your first signs of growth':'A new beginning';document.getElementById('plantText').textContent=done+' task'+(done===1?'':'s')+' completed. Every little effort counts.';document.getElementById('gardenProgress').style.width=(done%5)/5*100+'%';document.getElementById('gardenLevel').textContent='Level '+level+' · '+(level===1?'Seedling':level===2?'Sprout':level===3?'Young plant':'Blooming') }
+function renderQuote(){document.getElementById('quoteText').textContent=quotes[quoteIndex][0];document.getElementById('quoteBy').textContent=quotes[quoteIndex][1];document.getElementById('homeQuote').textContent=quotes[(new Date().getDate())%quotes.length][0];renderFavorites()}
+function nextQuote(){quoteIndex=(quoteIndex+1)%quotes.length;renderQuote()}
+function prevQuote(){quoteIndex=(quoteIndex-1+quotes.length)%quotes.length;renderQuote()}
+function saveQuote(){let f=JSON.parse(localStorage.getItem('bb_faves')||'[]');const q=quotes[quoteIndex][0];if(!f.includes(q))f.push(q);localStorage.setItem('bb_faves',JSON.stringify(f));renderFavorites();toast('Saved to your favorites 💜')}
+function renderFavorites(){const el=document.getElementById('favorites');if(!el)return;const f=JSON.parse(localStorage.getItem('bb_faves')||'[]');el.innerHTML='';if(!f.length){el.textContent='No favorites saved yet.';el.className='notice';return}el.className='';f.forEach(q=>{const d=document.createElement('div');d.className='listitem';const s=document.createElement('strong');s.textContent='“'+q+'”';d.append(s);el.append(d)})}
+function saveJournal(){const data={mood:document.getElementById('mood').value,gratitude:document.getElementById('gratitude').value,thoughts:document.getElementById('thoughts').value,date:new Date().toLocaleDateString()};localStorage.setItem('bb_journal',JSON.stringify(data));document.getElementById('journalStatus').textContent='Saved on this device for '+data.date+'. No online backup.';toast('Reflection saved ✍️')}
+function loadJournal(){const d=JSON.parse(localStorage.getItem('bb_journal')||'null');if(!d)return;document.getElementById('mood').value=d.mood||'Hopeful 🌱';document.getElementById('gratitude').value=d.gratitude||'';document.getElementById('thoughts').value=d.thoughts||'';document.getElementById('journalStatus').textContent='Last saved: '+(d.date||'this device')+'. Stored only in this browser.'}
+function resetDay(){tasks=tasks.map(t=>({...t,done:false}));persistTasks();toast('A fresh start. No shame, just begin 🌱')}
+document.getElementById('goal').value=localStorage.getItem('bb_goal')||'';if(localStorage.getItem('bb_goal'))document.getElementById('goalStatus').textContent='Your current goal: '+localStorage.getItem('bb_goal');renderTasks();renderGarden();renderQuote();
+</script>
+</body></html>
